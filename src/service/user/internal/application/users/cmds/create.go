@@ -8,12 +8,12 @@ import (
 )
 
 type CreateUserCommand struct {
-	loginname string
-	password  string
+	Loginname string `json:"loginname"` //用户名
+	Password  string `json:"password"`  //密码
 }
 
 type CreateUserCommandResponse struct {
-	Success bool
+	Success bool `json:"success"`
 }
 
 type CreateUserCommandHandler struct {
@@ -30,7 +30,7 @@ func NewCreateUserCommandHandler(repository *gorm.DB, manager *users.UserManager
 
 func (h *CreateUserCommandHandler) Handle(ctx context.Context, command *CreateUserCommand) (*CreateUserCommandResponse, error) {
 
-	user, err := h.manager.Create(command.loginname, command.password)
+	user, err := h.manager.Create(command.Loginname, command.Password)
 
 	if err != nil {
 		return nil, err

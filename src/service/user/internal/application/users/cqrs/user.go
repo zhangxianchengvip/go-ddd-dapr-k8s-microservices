@@ -2,6 +2,7 @@ package cqrs
 
 import (
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application/users/cmds"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application/users/queries"
 
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/domain/users"
 
@@ -17,7 +18,14 @@ func User(db *gorm.DB) {
 		panic(err)
 	}
 
-	handler := cmds.NewCreateUserCommandHandler(db, manager)
+	merr := mediatr.RegisterRequestHandler[*cmds.CreateUserCommand, *cmds.CreateUserCommandResponse](cmds.NewCreateUserCommandHandler(db, manager))
+	if merr != nil {
+		panic(merr)
+	}
 
-	mediatr.RegisterRequestHandler[*cmds.CreateUserCommand, *cmds.CreateUserCommandResponse](handler)
+	merr = mediatr.RegisterRequestHandler[*queries.UserByIDQuery, *queries.UserByIDQueryResponse](queries.NewUserByIdQueryHandler(db))
+
+	if merr != nil {
+		panic(merr)
+	}
 }
