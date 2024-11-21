@@ -9,18 +9,15 @@ import (
 	"gorm.io/gorm"
 )
 
-// UserByIDQuery represents the query to fetch a user by ID.
 type UserByIDQuery struct {
 	ID string `json:"id"  form:"id"` // 用户id
 }
 
-// UserByIDQueryResponse represents the response for the UserByIDQuery.
 type UserByIDQueryResponse struct {
 	ID        uuid.UUID `json:"id"`        // 用户id
 	Loginname string    `json:"loginname"` // 用户登录名
 }
 
-// UserByIdQueryHandler handles the UserByIDQuery.
 type UserByIdQueryHandler struct {
 	repo *gorm.DB
 }
@@ -31,7 +28,6 @@ func NewUserByIdQueryHandler(repo *gorm.DB) *UserByIdQueryHandler {
 	}
 }
 
-// Handle processes the UserByIDQuery and returns the corresponding UserByIDQueryResponse.
 func (h *UserByIdQueryHandler) Handle(ctx context.Context, query *UserByIDQuery) (*UserByIDQueryResponse, error) {
 
 	var user users.User
