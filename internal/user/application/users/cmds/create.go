@@ -3,7 +3,7 @@ package cmds
 import (
 	"context"
 
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/domain/users"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain/users"
 	"gorm.io/gorm"
 )
 

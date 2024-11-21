@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/cmd/user/app/apis"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app/apis"
 
 	"github.com/gin-gonic/gin"
 )

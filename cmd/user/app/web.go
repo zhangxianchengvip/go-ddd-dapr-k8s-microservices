@@ -4,11 +4,11 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/cmd/user/app/routes"
-	docs "github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/docs"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/domain"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/infrastructure"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app/routes"
+	docs "github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/docs"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/infrastructure"
 )
 
 type webApp struct {

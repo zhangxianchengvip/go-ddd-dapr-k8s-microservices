@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/infrastructure/database"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/infrastructure/database"
 	"gorm.io/gorm"
 )
 

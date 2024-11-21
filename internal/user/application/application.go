@@ -1,7 +1,7 @@
 package application
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application/users/cqrs"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/users/cqrs"
 	"gorm.io/gorm"
 )
 

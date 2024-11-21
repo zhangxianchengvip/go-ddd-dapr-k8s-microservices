@@ -1,4 +1,4 @@
-module github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user
+module github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices
 
 go 1.22.4
 

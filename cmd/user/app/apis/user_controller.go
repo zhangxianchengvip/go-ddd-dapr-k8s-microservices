@@ -1,8 +1,8 @@
 package apis
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application/users/cmds"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/user/internal/application/users/queries"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/users/cmds"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/users/queries"
 
 	"github.com/gin-gonic/gin"
 	"github.com/mehdihadeli/go-mediatr"
