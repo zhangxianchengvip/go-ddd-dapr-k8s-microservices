@@ -47,5 +47,5 @@ func (w *webApp) Run() {
 	routes.Map(w.gin.Group("/api/v1/"))
 	docs.SwaggerInfo.BasePath = "/api/v1"
 	w.gin.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
-	w.gin.Run(":8080")
+	w.gin.Run(":8081")
 }
