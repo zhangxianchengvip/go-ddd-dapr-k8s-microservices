@@ -28,4 +28,10 @@ func User(db *gorm.DB) {
 	if merr != nil {
 		panic(merr)
 	}
+
+	merr = mediatr.RegisterRequestHandler[*queries.UserLoginQuery, *queries.UserLoginQueryResponse](queries.NewUserLoginQueryHandler(db))
+
+	if merr != nil {
+		panic(merr)
+	}
 }

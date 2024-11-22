@@ -1,7 +1,7 @@
 package infrastructure
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/infrastructure/database"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/database"
 	"gorm.io/gorm"
 )
 
@@ -15,6 +15,6 @@ func NewInfrastructure() *Infrastructure {
 
 func (i *Infrastructure) Build() *Infrastructure {
 
-	i.DB = database.Connect()
+	i.DB = database.PostgresGormConnection("host= localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai")
 	return i
 }

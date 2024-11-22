@@ -6,10 +6,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func Connect() *gorm.DB {
+func PostgresGormConnection(conn string) *gorm.DB {
 
-	dsn := "host=localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai"
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(conn), &gorm.Config{})
 
 	if err != nil {
 		panic("failed to connect database")

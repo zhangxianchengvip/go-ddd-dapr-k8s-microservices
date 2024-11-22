@@ -73,3 +73,40 @@ func User(c *gin.Context) {
 	c.JSON(200, response)
 
 }
+
+// @BasePath /api/v1
+
+// User 用户登录
+// @Summary 用户登录
+// @Description 用户登录，并返回token
+// @Tags users
+// @Accept json
+// @Produce json
+// @Param body body queries.UserLoginQuery true "用户登录"
+// @Success 200 {object} queries.UserByIDQueryResponse "查询成功"
+// @Failure 400 {object} map[string]string "请求参数错误"
+// @Failure 500 {object} map[string]string "服务器内部错误"
+// @Router /login [post]
+func Login(c *gin.Context) {
+
+	var query queries.UserLoginQuery
+
+	if err := c.BindJSON(&query); err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	response, err := mediatr.Send[*queries.UserLoginQuery, *queries.UserLoginQueryResponse](c.Request.Context(), &query)
+
+	if err != nil {
+		c.JSON(500, gin.H{"error": err.Error()})
+		return
+	}
+	jwt(response)
+	c.JSON(200, response)
+}
+
+func jwt(query *queries.UserLoginQueryResponse) string {
+	// TODO: jwt
+	return ""
+}

@@ -9,4 +9,5 @@ import (
 func MapUserRoutes(r *gin.RouterGroup) {
 	r.POST("/users", apis.Create)
 	r.GET("/users", apis.User)
+	r.POST("/login", apis.Login)
 }
