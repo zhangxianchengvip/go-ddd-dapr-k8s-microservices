@@ -1,20 +1,26 @@
 package database
 
 import (
+	"errors"
+
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain/users"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func PostgresGormConnection(conn string) *gorm.DB {
+func PostgresGormConnection(conn string) (*gorm.DB, error) {
+
+	if conn == "" {
+		return nil, errors.New("empty connection string")
+	}
 
 	db, err := gorm.Open(postgres.Open(conn), &gorm.Config{})
 
 	if err != nil {
-		panic("failed to connect database")
+		return nil, err
 	}
 
 	db.AutoMigrate(&users.User{})
 
-	return db
+	return db, nil
 }

@@ -6,15 +6,25 @@ import (
 )
 
 type Infrastructure struct {
-	DB *gorm.DB
+	db_conn string
+	DB      *gorm.DB
 }
 
 func NewInfrastructure() *Infrastructure {
-	return &Infrastructure{}
+	return &Infrastructure{
+		db_conn: "host= localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai",
+	}
 }
 
 func (i *Infrastructure) Build() *Infrastructure {
 
-	i.DB = database.PostgresGormConnection("host= localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai")
+	db, err := database.PostgresGormConnection(i.db_conn)
+
+	if err != nil {
+		panic(err)
+	}
+
+	i.DB = db
+
 	return i
 }

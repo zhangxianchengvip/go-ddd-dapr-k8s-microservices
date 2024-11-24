@@ -6,7 +6,7 @@ import (
 	"github.com/redis/go-redis/v9"
 )
 
-func NewRedisCache(addr, password string, db int) *redis.Client {
+func NewRedisCache(addr, password string, db int) (*redis.Client, error) {
 
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     addr,     // 连接地址
@@ -14,10 +14,10 @@ func NewRedisCache(addr, password string, db int) *redis.Client {
 		DB:       db,       // 默认DB 0
 	})
 
-	return rdb
+	return rdb, nil
 }
 
-func NewRedisCacheByURL(url string) *redis.Client {
+func NewRedisCacheByURL(url string) (*redis.Client, error) {
 	opt, err := redis.ParseURL(url)
 	if err != nil {
 		panic(err)
@@ -25,10 +25,10 @@ func NewRedisCacheByURL(url string) *redis.Client {
 
 	rdb := redis.NewClient(opt)
 
-	return rdb
+	return rdb, nil
 }
 
-func NewRedisCacheByTLS(serverName string) *redis.Client {
+func NewRedisCacheByTLS(serverName string) (*redis.Client, error) {
 
 	rdb := redis.NewClient(&redis.Options{
 		TLSConfig: &tls.Config{
@@ -36,5 +36,5 @@ func NewRedisCacheByTLS(serverName string) *redis.Client {
 			ServerName: serverName,
 		},
 	})
-	return rdb
+	return rdb, nil
 }
