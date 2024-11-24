@@ -11,6 +11,13 @@ import (
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/infrastructure"
 )
 
+var (
+	port      = ":8081"
+	gin_group = "/api/v1/"
+	bathPath  = "/api/v1/"
+	swagger   = "/swagger/*any"
+)
+
 type webApp struct {
 	gin            *gin.Engine
 	domain         *domain.Domain
@@ -44,8 +51,8 @@ func (w *webApplicatonBuilder) Build() *webApp {
 }
 
 func (w *webApp) Run() {
-	routes.Map(w.gin.Group("/api/v1/"))
-	docs.SwaggerInfo.BasePath = "/api/v1"
-	w.gin.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
-	w.gin.Run(":8081")
+	routes.Map(w.gin.Group(gin_group))
+	docs.SwaggerInfo.BasePath = bathPath
+	w.gin.GET(swagger, ginSwagger.WrapHandler(swaggerfiles.Handler))
+	w.gin.Run(port)
 }
