@@ -4,7 +4,7 @@ import (
 	"reflect"
 )
 
-// IValueObject 接口用于定义值对象的行为
+// 指对象具有的能力
 type IValueObject interface {
 	Equal(IValueObject) bool
 }

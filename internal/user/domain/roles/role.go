@@ -4,15 +4,16 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/ddd"
 )
 
 type Role struct {
-	ID          uuid.UUID  `gorm:"type:uuid;primary_key" json:"id"` // 主键
-	Code        string     `gorm:"type:varchar(255)" json:"code"`   // 编码
-	Name        string     `gorm:"type:varchar(255)" json:"name"`   // 名称
-	Order       int        `gorm:"type:int" json:"order"`           // 排序
-	ParentId    *uuid.UUID `gorm:"type:uuid" json:"parent_id"`      // 父级ID
-	Description *string    `gorm:"type:text" json:"description"`    // 描述
+	ddd.AggregateRoot[uuid.UUID]            // 聚合根
+	Code                         string     // 编码
+	Name                         string     // 名称
+	Order                        int        // 排序
+	ParentId                     *uuid.UUID // 父级ID
+	Description                  *string    // 描述
 }
 
 func NewRole(id uuid.UUID, name, code string, desc *string, order int, parentId *uuid.UUID) (*Role, error) {
@@ -26,12 +27,12 @@ func NewRole(id uuid.UUID, name, code string, desc *string, order int, parentId 
 	}
 
 	return &Role{
-		ID:          id,
-		Name:        name,
-		Description: desc,
-		Code:        code,
-		Order:       order,
-		ParentId:    parentId,
+		AggregateRoot: ddd.NewAggregateRoot(id),
+		Name:          name,
+		Description:   desc,
+		Code:          code,
+		Order:         order,
+		ParentId:      parentId,
 	}, nil
 }
 

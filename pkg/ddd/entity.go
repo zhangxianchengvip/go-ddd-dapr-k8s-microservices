@@ -2,26 +2,35 @@ package ddd
 
 import "github.com/google/uuid"
 
-// IEntity 接口定义了实体的行为
-type IEntity interface {
-	Equal(other IEntity) bool
-}
-
+// TKey 接口定义了实体的唯一标识符的类型
 type TKey interface {
-	int | int64 | string | uuid.UUID
+	uint | uint64 | string | uuid.UUID
 }
 
-// Entity 结构体实现了 IEntity 接口，可以用于具有唯一标识符的实体
+// 实体具有的能力
+type IEntity[T TKey] interface {
+	Equal(other IEntity[T]) bool
+}
+
+// 实体:具有唯一标识符
 type Entity[T TKey] struct {
-	ID T
+	ID T `gorm:"primary_key" json:"id"`
+}
+
+// NewEntity 方法用于创建实体
+func NewEntity[T TKey](id T) Entity[T] {
+	return Entity[T]{
+		ID: id,
+	}
 }
 
 // Equal 方法用于比较两个实体是否相等
-func (e Entity[TKey]) Equal(other IEntity) bool {
-	// 检查 other 是否为 Entity 类型
-	if otherEntity, ok := other.(Entity[TKey]); ok {
+func (e *Entity[T]) Equal(other IEntity[T]) bool {
+	// 将接口类型转换为具体类型
+	if otherEntity, ok := other.(*Entity[T]); ok {
 		// 使用 ID 比较实体
 		return e.ID == otherEntity.ID
 	}
-	return false
+
+	return false // 如果类型不匹配，返回 false
 }
