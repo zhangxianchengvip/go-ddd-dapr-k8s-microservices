@@ -30,7 +30,7 @@ func (m *UserManager) Create(loginname, password string) (*User, error) {
 		return nil, ErrUserAlreadyExists
 	}
 
-	newUser, err := NewUser(uuid.New(), loginname, password)
+	newUser, err := NewUser(uuid.New(), loginname, password, Address{})
 
 	if err != nil {
 		return nil, err

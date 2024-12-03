@@ -14,10 +14,12 @@ type User struct {
 	Email                        string    // 邮箱
 	Phone                        string    // 手机号
 	RoleId                       uuid.UUID // 角色ID
+	Address                                // 地址
+	Status                       bool      // 状态
 }
 
 // 创建用户
-func NewUser(id uuid.UUID, loginname, password string) (*User, error) {
+func NewUser(id uuid.UUID, loginname, password string, addr Address) (*User, error) {
 
 	if id == uuid.Nil {
 		return nil, ErrIDEmpty
@@ -35,6 +37,9 @@ func NewUser(id uuid.UUID, loginname, password string) (*User, error) {
 		AggregateRoot: ddd.NewAggregateRoot(id),
 		Loginname:     loginname,
 		Password:      password,
+		Address:       addr,
+		Status:        true,
+	    
 	}, nil
 }
 
