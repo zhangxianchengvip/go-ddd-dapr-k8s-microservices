@@ -1,10 +1,9 @@
 package roles
 
 import (
-	"errors"
-
 	"github.com/google/uuid"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/ddd"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/tools"
 )
 
 type Role struct {
@@ -18,12 +17,12 @@ type Role struct {
 
 func NewRole(id uuid.UUID, name, code string, desc *string, order int, parentId *uuid.UUID) (*Role, error) {
 
-	if name == "" {
-		return nil, errors.New("name is required")
+	if tools.StringIsEmplyOrWhiteSpace(name) {
+		return nil, ErrNameEmpty
 	}
 
-	if code == "" {
-		return nil, errors.New("code is required")
+	if tools.StringIsEmplyOrWhiteSpace(code) {
+		return nil, ErrCodeEmpty
 	}
 
 	return &Role{
@@ -38,7 +37,7 @@ func NewRole(id uuid.UUID, name, code string, desc *string, order int, parentId 
 
 func (r *Role) UpdateName(name string) error {
 	if name == "" {
-		return errors.New("name is required")
+		return ErrNameEmpty
 	}
 
 	r.Name = name

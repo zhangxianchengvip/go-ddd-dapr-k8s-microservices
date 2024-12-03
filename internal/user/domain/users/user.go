@@ -1,8 +1,6 @@
 package users
 
 import (
-	"errors"
-
 	"github.com/google/uuid"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/ddd"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/tools"
@@ -22,15 +20,15 @@ type User struct {
 func NewUser(id uuid.UUID, loginname, password string) (*User, error) {
 
 	if id == uuid.Nil {
-		return nil, errors.New("id cannot be nil")
+		return nil, ErrIDEmpty
 	}
 
 	if tools.StringIsEmplyOrWhiteSpace(loginname) {
-		return nil, errors.New("loginname cannot be empty")
+		return nil, ErrLoinnameEmpty
 	}
 
 	if tools.StringIsEmplyOrWhiteSpace(password) {
-		return nil, errors.New("password cannot be empty")
+		return nil, ErrPasswordEmpty
 	}
 
 	return &User{
@@ -43,7 +41,7 @@ func NewUser(id uuid.UUID, loginname, password string) (*User, error) {
 // 修改密码
 func (u *User) ChangePassword(password string) error {
 	if tools.StringIsEmplyOrWhiteSpace(password) {
-		return errors.New("password cannot be empty")
+		return ErrPasswordEmpty
 	}
 
 	u.Password = password

@@ -1,8 +1,6 @@
 package users
 
 import (
-	"errors"
-
 	"github.com/google/uuid"
 	"gorm.io/gorm"
 )
@@ -14,7 +12,7 @@ type UserManager struct {
 func NewManager(repository *gorm.DB) (*UserManager, error) {
 
 	if repository == nil {
-		return nil, errors.New("repository is nil")
+		return nil, ErrRepositoryNil
 	}
 
 	return &UserManager{
@@ -29,7 +27,7 @@ func (m *UserManager) Create(loginname, password string) (*User, error) {
 	)
 
 	if m.repository.Where("loginname = ?", loginname).First(&user).Error == nil && user.ID != uuid.Nil {
-		return nil, errors.New("user already exists")
+		return nil, ErrUserAlreadyExists
 	}
 
 	newUser, err := NewUser(uuid.New(), loginname, password)
