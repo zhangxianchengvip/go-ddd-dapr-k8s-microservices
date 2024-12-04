@@ -4,32 +4,30 @@ import (
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/features/users/cmds"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/features/users/queries"
 
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain/users"
-
 	"github.com/mehdihadeli/go-mediatr"
 	"gorm.io/gorm"
 )
 
-func User(db *gorm.DB) {
+func User(
+	db *gorm.DB,
+	createUserHandler *cmds.CreateUserCommandHandler,
+	userByIdQueryHandler *queries.UserByIdQueryHandler,
+	userLoginQueryHandler *queries.UserLoginQueryHandler,
 
-	manager, err := users.NewManager(db)
+) {
 
-	if err != nil {
-		panic(err)
-	}
-
-	merr := mediatr.RegisterRequestHandler[*cmds.CreateUserCommand, *cmds.CreateUserCommandResponse](cmds.NewCreateUserCommandHandler(db, manager))
+	merr := mediatr.RegisterRequestHandler[*cmds.CreateUserCommand, *cmds.CreateUserCommandResponse](createUserHandler)
 	if merr != nil {
 		panic(merr)
 	}
 
-	merr = mediatr.RegisterRequestHandler[*queries.UserByIDQuery, *queries.UserByIDQueryResponse](queries.NewUserByIdQueryHandler(db))
+	merr = mediatr.RegisterRequestHandler[*queries.UserByIDQuery, *queries.UserByIDQueryResponse](userByIdQueryHandler)
 
 	if merr != nil {
 		panic(merr)
 	}
 
-	merr = mediatr.RegisterRequestHandler[*queries.UserLoginQuery, *queries.UserLoginQueryResponse](queries.NewUserLoginQueryHandler(db))
+	merr = mediatr.RegisterRequestHandler[*queries.UserLoginQuery, *queries.UserLoginQueryResponse](userLoginQueryHandler)
 
 	if merr != nil {
 		panic(merr)

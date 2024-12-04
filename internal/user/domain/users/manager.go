@@ -9,15 +9,15 @@ type UserManager struct {
 	repository *gorm.DB
 }
 
-func NewManager(repository *gorm.DB) (*UserManager, error) {
+func NewManager(repository *gorm.DB) *UserManager {
 
 	if repository == nil {
-		return nil, ErrRepositoryNil
+		panic(ErrRepositoryNil)
 	}
 
 	return &UserManager{
 		repository: repository,
-	}, nil
+	}
 }
 
 func (m *UserManager) Create(loginname, password string) (*User, error) {
