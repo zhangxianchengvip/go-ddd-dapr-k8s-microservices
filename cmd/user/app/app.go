@@ -11,8 +11,8 @@ import (
 func Run() {
 
 	domain_di := domain.DependencyInjection()
-	application_di := application.DependencyInjection()
 	infrastructure_di := infrastructure.DependencyInjection()
+	application_di := application.DependencyInjection()
 	web_di := web.DependencyInjection()
 
 	module := []fx.Option{}

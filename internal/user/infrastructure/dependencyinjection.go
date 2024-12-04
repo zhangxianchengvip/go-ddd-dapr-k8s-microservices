@@ -1,6 +1,8 @@
 package infrastructure
 
-import "go.uber.org/fx"
+import (
+	"go.uber.org/fx"
+)
 
 func DependencyInjection() []fx.Option {
 

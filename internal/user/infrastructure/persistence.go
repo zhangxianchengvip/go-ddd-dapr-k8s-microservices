@@ -1,13 +1,16 @@
 package infrastructure
 
 import (
+	"github.com/spf13/viper"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/database"
 	"gorm.io/gorm"
 )
 
-func NewRespository() *gorm.DB {
+func NewRespository(viper *viper.Viper) *gorm.DB {
 
-	db, err := database.PostgresGormConnection("host= localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai")
+	conn := viper.GetString("database.conn")
+
+	db, err := database.PostgresGormConnection(conn)
 
 	if err != nil {
 		panic(err)
