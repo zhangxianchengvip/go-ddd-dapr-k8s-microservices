@@ -6,9 +6,13 @@ import (
 	"gorm.io/gorm"
 )
 
+var (
+	database_conn_config = "database.conn"
+)
+
 func NewRespository(viper *viper.Viper) *gorm.DB {
 
-	conn := viper.GetString("database.conn")
+	conn := viper.GetString(database_conn_config)
 
 	db, err := database.PostgresGormConnection(conn)
 
