@@ -26,7 +26,7 @@ func NewGin() *gin.Engine {
 
 // Configuretion 配置
 func Configuretion(v *viper.Viper) {
-	v.Set("database.conn", "host= localhost user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai")
+	v.Set("database.conn", "host=192.168.110.21 user=postgres password=1 dbname=user port=5432 sslmode=disable TimeZone=Asia/Shanghai")
 }
 
 // RunServer 启动服务
