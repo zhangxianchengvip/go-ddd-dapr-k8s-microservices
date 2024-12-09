@@ -52,7 +52,12 @@ func DependencyInjection() []fx.Option {
 
 	return []fx.Option{
 		fx.Provide(NewGin),
+	}
 
+}
+
+func Invoke() []fx.Option {
+	return []fx.Option{
 		fx.Invoke(Configuretion),
 
 		fx.Invoke(func(uc *cqrs.UserCQRS) {
@@ -61,5 +66,4 @@ func DependencyInjection() []fx.Option {
 
 		fx.Invoke(RunServer),
 	}
-
 }

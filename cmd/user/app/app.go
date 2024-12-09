@@ -14,12 +14,14 @@ func Run() {
 	infrastructure_di := infrastructure.DependencyInjection()
 	application_di := application.DependencyInjection()
 	web_di := web.DependencyInjection()
+	invoke := web.Invoke()
 
 	module := []fx.Option{}
 	module = append(module, domain_di...)
 	module = append(module, application_di...)
 	module = append(module, infrastructure_di...)
 	module = append(module, web_di...)
+	module = append(module, invoke...)
 
 	// 依赖注入
 	app := fx.New(
