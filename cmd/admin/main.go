@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/admin/app"
 )
 
 func main() {

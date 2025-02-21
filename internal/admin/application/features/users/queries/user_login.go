@@ -5,7 +5,7 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain/users"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/domain/users"
 	"gorm.io/gorm"
 )
 

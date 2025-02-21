@@ -1,8 +1,8 @@
 package cqrs
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/features/users/cmds"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/features/users/queries"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/application/features/users/cmds"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/application/features/users/queries"
 
 	"github.com/mehdihadeli/go-mediatr"
 )

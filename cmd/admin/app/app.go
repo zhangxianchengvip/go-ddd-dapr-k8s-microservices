@@ -1,10 +1,10 @@
 package app
 
 import (
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app/web"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/domain"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/infrastructure"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/admin/app/web"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/application"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/domain"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/infrastructure"
 	"go.uber.org/fx"
 )
 

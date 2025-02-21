@@ -8,8 +8,8 @@ import (
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	docs "github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/api/openapi-spec/user"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app/web/routes"
-	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/cqrs"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/admin/app/web/routes"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/admin/application/cqrs"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/webprovider"
 	"go.uber.org/fx"
 )
