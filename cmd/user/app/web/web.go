@@ -10,6 +10,7 @@ import (
 	docs "github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/api/openapi-spec/user"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/cmd/user/app/web/routes"
 	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/internal/user/application/cqrs"
+	"github.com/zhangxianchengvip/go-ddd-dapr-k8s-microservices/pkg/webprovider"
 	"go.uber.org/fx"
 )
 
@@ -19,10 +20,6 @@ var (
 	bathPath  = "/api/v1/"
 	swagger   = "/swagger/*any"
 )
-
-func NewGin() *gin.Engine {
-	return gin.Default()
-}
 
 // Configuretion 配置
 func Configuretion(v *viper.Viper) {
@@ -51,7 +48,7 @@ func RunServer(lifecycle fx.Lifecycle, r *gin.Engine) {
 func DependencyInjection() []fx.Option {
 
 	return []fx.Option{
-		fx.Provide(NewGin),
+		fx.Provide(webprovider.NewGin),
 	}
 
 }
