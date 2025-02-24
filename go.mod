@@ -110,6 +110,7 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/labstack/echo/v4 v4.13.3
 	github.com/mehdihadeli/go-mediatr v1.3.0
+	github.com/rabbitmq/amqp091-go v1.10.0
 	github.com/redis/go-redis/v9 v9.7.0
 	golang.org/x/text v0.21.0 // indirect
 	gorm.io/driver/mysql v1.5.7
